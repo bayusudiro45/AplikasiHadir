@@ -19,11 +19,17 @@ public class LoginPage {
     @FindBy(id = "password")
     private WebElement password;
 
-    @FindBy( xpath = "//button[@type='submit']")
+    @FindBy(xpath = "//button[@type='submit']")
     private WebElement masukButton;
 
-    @FindBy( xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
+    @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
     public WebElement errorMessage;
+
+    @FindBy(xpath = "//button[normalize-space()='disini']")
+    public WebElement registerButton;
+
+    @FindBy(id = "nik")
+    private WebElement NIK;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
@@ -42,6 +48,10 @@ public class LoginPage {
     masukButton.click();
     }
 
+    public void setNIK(String value){
+      NIK.sendKeys(value);
+    }
+
     public String getErrorMessage() {
     try {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -54,14 +64,18 @@ public class LoginPage {
     }
   }
     public void performLogin() {
-    setEmail("standard_user");
-    setPassword("secret_sauce");
-    // clickLoginButton();
+    setEmail("hadirsqa1@gmail.com");
+    setPassword("SQA@Hadir12345");
+    clickMasukButton();
     }
 
   public void performLogin(String username, String password) {
     setEmail(username);
     setPassword(password);
-    // clickLoginButton();
+    clickMasukButton();
+    }
+
+    public void clickRegisterButton(){
+      registerButton.click();
     }
 }
