@@ -2,10 +2,10 @@ package com.belajar.cucumber.pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class InventoryPage {
+public class DashboardPage {
   private WebDriver driver;
 
-  public InventoryPage(WebDriver driver) {
+  public DashboardPage(WebDriver driver) {
     this.driver = driver;
   }
 
