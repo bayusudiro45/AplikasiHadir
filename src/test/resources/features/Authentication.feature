@@ -20,9 +20,21 @@ Feature: Authentication Feature
   #   When pengguna melakukan login dengan username "hadirsqa1@gmail.com" dan password "SQA@Hadir12345" yang valid.
   #   Then pengguna akan di bawa ke halaman inventory dengan url "https://magang.dikahadir.com/apps/absent" untuk memeriksa hasil test.
 
+  # Scenario: Positive Register In Aplikasi Hadir
+  #   Given user berada pada halaman register.
+  #   When user memasukkan NIK yang terdaftar pada sistem secara random.
+  #   And user memasukkan data valid nama lengkap "Izzah Luthfiah", email, password "Haiqwerty123", file foto "test-foto.webp".
+  #   And user menekan tombol daftar.
+  #   Then user berhasil registrasi dan akan melihat pesan "berhasil register, silahkan menunggu di approve oleh admin".
 
-  Scenario: Positive Register In Aplikasi Hadir
-    Given user berada pada halaman register.
-    When user memasukkan NIK yang terdaftar pada sistem secara random.
-    # And user memasukkan data valid lainnya
-    # Then user berhasil registrasi dan akan melihat pesan "Registrasi berhasil"
+  Scenario Outline: Register using Invalid Data in Aplikasi Hadir
+    Given user berada pada halaman register untuk menguji invalid data.
+    When user memasukkan data NIK "<NIK>", nama lengkap "Izzah Luthfiah", email "<email>", password "Haiqwerty123", file foto "test-foto.webp".
+    And setelah mengisi dengan data invalid, user menekan tombol daftar.
+    Then user gagal registrasi dan akan melihat pesan "<pesan>".
+
+    Examples:
+      | NIK           | email               | pesan                                                  |
+      | D5768907      | ${random_email}     | NIK Anda tidak ditemukan                               |
+      | ${random_NIK} | hadirsqa1@gmail.com | Email sudah terdaftar                                  |
+      | ${random_NIK} | efrf@gmail.com      | Akun sudah terdaftar di sistem dan belum terverifikasi |

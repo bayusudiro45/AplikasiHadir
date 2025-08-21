@@ -25,15 +25,9 @@ public class LoginPage {
     @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
     public WebElement errorMessage;
 
-    @FindBy(xpath = "//button[normalize-space()='disini']")
-    public WebElement registerButton;
-
-    @FindBy(id = "nik")
-    private WebElement NIK;
-
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(this.driver, this);
+        PageFactory.initElements(driver, this);
     }
 
     public void setEmail(String value) {
@@ -45,13 +39,8 @@ public class LoginPage {
     }
 
     public void clickMasukButton() {
-    masukButton.click();
+      masukButton.click();
     }
-
-    public void setNIK(String value){
-      NIK.sendKeys(value);
-    }
-
     public String getErrorMessage() {
     try {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
@@ -75,7 +64,5 @@ public class LoginPage {
     clickMasukButton();
     }
 
-    public void clickRegisterButton(){
-      registerButton.click();
-    }
+
 }
