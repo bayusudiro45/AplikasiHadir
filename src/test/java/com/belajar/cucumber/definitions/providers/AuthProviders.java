@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import com.belajar.cucumber.pages.DashboardPage;
 import org.openqa.selenium.WebDriver;
 
 import com.belajar.cucumber.pages.LoginPage;
@@ -13,6 +14,8 @@ public class AuthProviders {
   private DriverManager driverManager;
   private WebDriver driver;
   private LoginPage loginPage;
+
+  private DashboardPage dashboardPage;
 
   public void preTest() {
     driverManager = new DriverManager();
@@ -35,6 +38,11 @@ public class AuthProviders {
 
   public LoginPage loginPage() {
     return loginPage;
+  }
+
+  public DashboardPage dashboardPage(){
+    dashboardPage = new DashboardPage(driver);
+    return dashboardPage;
   }
 
   public void close() {

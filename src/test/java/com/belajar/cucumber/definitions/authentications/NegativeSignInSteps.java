@@ -1,38 +1,39 @@
-// package com.belajar.cucumber.definitions.authentications;
-// import org.testng.Assert;
+package com.belajar.cucumber.definitions.authentications;
 
-// import com.belajar.cucumber.definitions.providers.AuthProviders;
+import org.testng.Assert;
 
-// import io.cucumber.java.en.And;
-// import io.cucumber.java.en.Given;
-// import io.cucumber.java.en.Then;
-// import io.cucumber.java.en.When;
+import com.belajar.cucumber.definitions.providers.AuthProviders;
 
-// public class NegativeSignInSteps extends AuthProviders{
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
-//   @Given("pengguna masuk ke halaman login.")
-//   public void step01() {
-//     preTest();
-//     Hook.driver = this; //Assign instance ke hook
-//   }
+public class NegativeSignInSteps extends AuthProviders {
 
-//   @When("pengguna memasukkan username {string}.")
-//   public void step02(String email) {
-//     loginPage().setEmail(email);
-//   }
+    @Given("pengguna masuk ke halaman login.")
+    public void step01() {
+        preTest();
+        Hook.driver = this; //Assign instance ke hook
+    }
 
-//   @And("pengguna memasukkan password {string}.")
-//   public void step03(String password) {
-//     loginPage().setPassword(password);
-//   }
+    @When("pengguna memasukkan username {string}.")
+    public void step02(String email) {
+        loginPage().setEmail(email);
+    }
 
-//   @And("pengguna menekan tombol masuk.")
-//   public void step04() {
-//     loginPage().clickMasukButton();
-//   }
+    @And("pengguna memasukkan password {string}.")
+    public void step03(String password) {
+        loginPage().setPassword(password);
+    }
 
-//   @Then("pengguna akan melihat pesan kesalahan {string}.")
-//   public void step05(String message) {
-//     Assert.assertEquals(loginPage().getErrorMessage(), message);
-//   }
-// }
+    @And("pengguna menekan tombol masuk.")
+    public void step04() {
+        loginPage().clickMasukButton();
+    }
+
+    @Then("pengguna akan melihat pesan kesalahan {string}.")
+    public void step05(String message) {
+        Assert.assertEquals(loginPage().getErrorMessage(), message);
+    }
+}

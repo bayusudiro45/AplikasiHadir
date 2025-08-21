@@ -45,37 +45,38 @@ public class LoginPage {
     }
 
     public void clickMasukButton() {
-    masukButton.click();
+        masukButton.click();
     }
 
-    public void setNIK(String value){
-      NIK.sendKeys(value);
+    public void setNIK(String value) {
+        NIK.sendKeys(value);
     }
 
     public String getErrorMessage() {
-    try {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
-        ));
-        return errorMessage.getText();
-    } catch (NoSuchElementException e) {
-      return null;
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            wait.until(ExpectedConditions.visibilityOfElementLocated(
+                    By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
+            ));
+            return errorMessage.getText();
+        } catch (NoSuchElementException e) {
+            return null;
+        }
     }
-  }
+
     public void performLogin() {
-    setEmail("hadirsqa1@gmail.com");
-    setPassword("SQA@Hadir12345");
-    clickMasukButton();
+        setEmail("hadirsqa1@gmail.com");
+        setPassword("SQA@Hadir12345");
+        clickMasukButton();
     }
 
-  public void performLogin(String username, String password) {
-    setEmail(username);
-    setPassword(password);
-    clickMasukButton();
+    public void performLogin(String username, String password) {
+        setEmail(username);
+        setPassword(password);
+        clickMasukButton();
     }
 
-    public void clickRegisterButton(){
-      registerButton.click();
+    public void clickRegisterButton() {
+        registerButton.click();
     }
 }
