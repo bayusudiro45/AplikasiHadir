@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Authentication Suite" parallel="false">
+  <test name="Izin Test Suite">
+    <classes>
+      <!-- <class name="com.juaracoding.aplikasihadir.definitions.runners.RunnerIzin"/> -->
+      <!-- <class name="com.juaracoding.aplikasihadir.definitions.runners.RunnerLoginNegative"/>
+      <class name="com.juaracoding.aplikasihadir.definitions.runners.RunnerLoginPositive"/> -->
+      <class name="com.juaracoding.aplikasihadir.definitions.runners.RunnerSick"/>
+    </classes>
+  </test>
+</suite>
