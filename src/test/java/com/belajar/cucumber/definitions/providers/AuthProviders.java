@@ -5,32 +5,39 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.belajar.cucumber.pages.DashboardPage;
 import com.belajar.cucumber.pages.LoginPage;
+import com.belajar.cucumber.pages.LupaPasswordPage;
+import com.belajar.cucumber.pages.RegisterPage;
 import com.belajar.cucumber.utils.DriverManager;
 
 public class AuthProviders {
   private DriverManager driverManager;
-  private WebDriver driver;
+  protected WebDriver driver;
   private LoginPage loginPage;
   private DashboardPage dashboardPage;
+  private RegisterPage registerPage;
+  private LupaPasswordPage lupaPasswordPage;
 
   public void preTest() {
     driverManager = new DriverManager();
     driver = driverManager.getDriver();
-    loginPage = new LoginPage(driver);
     driver.get("https://magang.dikahadir.com/absen/login");
-  }
-
-  public void preConRegister(){
-    dashboardPage = new DashboardPage(driver);
-    dashboardPage.clickRegisterPageButton();
   }
 
   public void preConditionLogin() {
     loginPage.performLogin();
+  }
+
+  public RegisterPage registerPage(){
+    registerPage = new RegisterPage(driver);
+    return registerPage;
+  }
+  public void preConRegister(){
+    loginPage().clickRegisterPageButton();
   }
 
   public WebDriver getDriver() {
@@ -38,11 +45,18 @@ public class AuthProviders {
   }
 
   public LoginPage loginPage() {
+    loginPage = new LoginPage(driver);
     return loginPage;
   }
 
   public DashboardPage dashboardPage(){
+    dashboardPage = new DashboardPage(driver);
     return dashboardPage;
+  }
+
+  public LupaPasswordPage lupaPasswordPage(){
+    lupaPasswordPage = new LupaPasswordPage(driver);
+    return lupaPasswordPage;
   }
 
   public void close() {
@@ -72,7 +86,7 @@ public class AuthProviders {
     }
 
     public String getRandomValidNIK(String NIK) {
-      if ("${random_NIK}".equals(NIK)) {
+      if ("${random_valid_NIK}".equals(NIK)) {
         return getRandomValidNIK();
       }
       return NIK;
@@ -95,5 +109,9 @@ public class AuthProviders {
     public String getPhotoPath(String fileName) {
       File file = new File("src/test/resources/" + fileName);
       return file.getAbsolutePath();
+    }
+    public void zoomOut(){
+      ((JavascriptExecutor) driver).executeScript("document.body.style.zoom='50%'");
+      try { Thread.sleep(1000); } catch (InterruptedException e) {}
     }
     }

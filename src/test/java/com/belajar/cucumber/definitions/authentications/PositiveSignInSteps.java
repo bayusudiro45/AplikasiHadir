@@ -26,7 +26,7 @@ public class PositiveSignInSteps extends AuthProviders {
     loginPage().performLogin(username, password);
   }
 
-  @Then("pengguna akan di bawa ke halaman inventory dengan url {string} untuk memeriksa hasil test.")
+  @Then("pengguna akan di bawa ke halaman dashboard dengan url {string} untuk memeriksa hasil test.")
   public void step03(String url) {
     WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(20));
     wait.until(ExpectedConditions.urlContains(url));

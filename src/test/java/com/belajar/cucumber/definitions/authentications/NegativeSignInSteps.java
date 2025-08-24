@@ -18,12 +18,12 @@ public class NegativeSignInSteps extends AuthProviders{
 
   @When("pengguna memasukkan username {string}.")
   public void step02(String email) {
-    loginPage().setEmail(email);
+    loginPage().setEmailLogin(email);
   }
 
   @And("pengguna memasukkan password {string}.")
   public void step03(String password) {
-    loginPage().setPassword(password);
+    loginPage().setPasswordLogin(password);
   }
 
   @And("pengguna menekan tombol masuk.")
