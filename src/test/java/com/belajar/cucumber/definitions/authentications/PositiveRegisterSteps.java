@@ -12,7 +12,6 @@ import io.cucumber.java.en.When;
 public class PositiveRegisterSteps extends AuthProviders {
     @Given("user berada pada halaman register.")
     public void step01(){
-        preTest();
         preConRegister();
         Hook.driver = this;
     }

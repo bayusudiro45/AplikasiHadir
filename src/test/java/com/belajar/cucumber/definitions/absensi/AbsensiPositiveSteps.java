@@ -17,9 +17,7 @@ public class AbsensiPositiveSteps extends AuthProviders {
 
     @Given("user di bawa kehalaman dashbord.")
     public void step01() {
-        preTest();
         preConditionLogin();
-        Hook.driver = this;
     }
 
     @When("user clik tab Absensi.")

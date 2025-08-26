@@ -1,9 +1,14 @@
 package com.belajar.cucumber.pages;
 
+import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class DashboardPage {
   private WebDriver driver;
@@ -16,6 +21,15 @@ public class DashboardPage {
 
   @FindBy(xpath = "//p[normalize-space()='Absensi']")
   private WebElement absenButton;
+
+  @FindBy(xpath = "//img[@alt='menu']")
+  private WebElement burgerButton;
+
+  @FindBy(xpath = "//button[normalize-space()='Logout']")
+  private WebElement logoutButton;
+
+  @FindBy(xpath = "//img[@alt='Koreksi Absen']")
+  private WebElement koreksiIcon;
 
   public DashboardPage(WebDriver driver) {
         this.driver = driver;
@@ -36,5 +50,21 @@ public class DashboardPage {
 
     public void clickAbsenButton(){
         absenButton.click();
+    }
+
+    public void clickBurgerButton(){
+      burgerButton.click();
+    }
+
+    public void clickLogoutButton(){
+      logoutButton.click();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+      wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/absen/login"));    
+    }
+
+    public void clikKoreksiIcon(){
+      koreksiIcon.click();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/apps/absent/correction"));    
     }
 }

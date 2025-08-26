@@ -1,8 +1,6 @@
 package com.belajar.cucumber.definitions.authentications;
 
 import java.time.Duration;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -30,13 +28,13 @@ public class PositiveResetPasswordSteps extends AuthProviders{
     @And("user menekan tombol submit.")
     public void step03(){
         lupaPasswordPage().clickSubmit();
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.urlContains("reset-password?email=hadirsqa1%40gmail.com&message=success"));
         }
 
-    @Then("Then user melihat pesan validasi {string} dan diarahkan ke halaman url {string}.")
+    @Then("user melihat pesan validasi {string} dan diarahkan ke halaman url {string}.")
     public void step04(String message, String url){
         Assert.assertEquals(lupaPasswordPage().getValidationMessage(), message);
-        // Assert.assertEquals(lupaPasswordPage().getCurrentURL(), url);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.urlContains("reset-password?email=hadirsqa1%40gmail.com&message=success"));
+        Assert.assertEquals(lupaPasswordPage().getCurrentURL(), url);
     }
 }

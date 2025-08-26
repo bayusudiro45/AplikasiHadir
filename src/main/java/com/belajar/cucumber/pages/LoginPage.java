@@ -46,6 +46,8 @@ public class LoginPage {
 
   public void clickMasukButton() {
     masukButton.click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/apps/absent"));
   }
 
     public String getErrorMessage() {

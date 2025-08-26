@@ -16,14 +16,12 @@ public class CutiPositiveSteps extends AuthProviders {
 
     @Given("saat pengguna ada di halaman dashboard.")
     public void step01() {
-        preTest();
         preConditionLogin();
         Hook.driver = this;
     }
 
     @When("pengguna menekan tab cuti.")
     public void step02() {
-        zoomOut();
         dashboardPage().clickCutiButton();
     }
 

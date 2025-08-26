@@ -1,5 +1,4 @@
 package com.belajar.cucumber.definitions.authentications;
-import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import com.belajar.cucumber.definitions.providers.AuthProviders;
@@ -14,7 +13,6 @@ public class EmptyDataRegisterSteps extends AuthProviders{
 
     @Given("user berada pada halaman register untuk menguji empty data.")
     public void step01(){
-        preTest();
         preConRegister();
         Hook.driver = this;
     }

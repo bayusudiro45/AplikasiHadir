@@ -13,7 +13,6 @@ public class InvalidDataRegisterSteps extends AuthProviders{
 
     @Given("user berada pada halaman register untuk menguji invalid data.")
     public void step01(){
-        preTest();
         preConRegister();
         Hook.driver = this;
     }

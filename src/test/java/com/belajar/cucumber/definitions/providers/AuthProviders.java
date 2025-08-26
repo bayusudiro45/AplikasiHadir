@@ -9,9 +9,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.belajar.cucumber.pages.DashboardPage;
+import com.belajar.cucumber.pages.KoreksiAbsenPage;
 import com.belajar.cucumber.pages.LoginPage;
 import com.belajar.cucumber.pages.LupaPasswordPage;
 import com.belajar.cucumber.pages.RegisterPage;
+import com.belajar.cucumber.utils.DragnDrop;
 import com.belajar.cucumber.utils.DriverManager;
 
 public class AuthProviders {
@@ -21,29 +23,10 @@ public class AuthProviders {
   private DashboardPage dashboardPage;
   private RegisterPage registerPage;
   private LupaPasswordPage lupaPasswordPage;
+  private KoreksiAbsenPage koreksiAbsenPage;
+  private DragnDrop dragnDrop;
 
-  public void preTest() {
-    driverManager = new DriverManager();
-    driver = driverManager.getDriver();
-    driver.get("https://magang.dikahadir.com/absen/login");
-  }
-
-  public void preConditionLogin() {
-    loginPage.performLogin();
-  }
-
-  public RegisterPage registerPage(){
-    registerPage = new RegisterPage(driver);
-    return registerPage;
-  }
-  public void preConRegister(){
-    loginPage().clickRegisterPageButton();
-  }
-
-  public WebDriver getDriver() {
-    return driverManager.getDriver();
-  }
-
+  //inisiasi page
   public LoginPage loginPage() {
     loginPage = new LoginPage(driver);
     return loginPage;
@@ -58,6 +41,48 @@ public class AuthProviders {
     lupaPasswordPage = new LupaPasswordPage(driver);
     return lupaPasswordPage;
   }
+
+  public KoreksiAbsenPage koreksiAbsenPage(){
+    koreksiAbsenPage = new KoreksiAbsenPage(driver);
+    return koreksiAbsenPage;
+  }
+  public DragnDrop dragnDrop(){
+    dragnDrop = new DragnDrop(driver);
+    return dragnDrop;
+  }
+
+
+  public void preTest() {
+    driverManager = new DriverManager();
+    driver = driverManager.getDriver();
+    driver.get("https://magang.dikahadir.com/absen/login");
+  }
+
+  public void preConditionLogin() {
+    preTest();
+    loginPage = new LoginPage(driver);
+    loginPage.performLogin();
+    zoomOut();
+  }
+
+  public void preConAjukanKoreksi(){
+    preConditionLogin();
+    dashboardPage().clikKoreksiIcon();
+  }
+
+  public RegisterPage registerPage(){
+    registerPage = new RegisterPage(driver);
+    return registerPage;
+  }
+  public void preConRegister(){
+    preTest();
+    loginPage().clickRegisterPageButton();
+  }
+
+  public WebDriver getDriver() {
+    return driverManager.getDriver();
+  }
+
 
   public void close() {
     driverManager.quitDriver();
@@ -111,7 +136,7 @@ public class AuthProviders {
       return file.getAbsolutePath();
     }
     public void zoomOut(){
-      ((JavascriptExecutor) driver).executeScript("document.body.style.zoom='50%'");
+      ((JavascriptExecutor) driver).executeScript("document.body.style.zoom='70%'");
       try { Thread.sleep(1000); } catch (InterruptedException e) {}
     }
     }

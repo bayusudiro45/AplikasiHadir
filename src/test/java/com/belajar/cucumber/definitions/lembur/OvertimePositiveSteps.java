@@ -16,14 +16,12 @@ public class OvertimePositiveSteps extends AuthProviders {
 
     @Given("user berada pada halaman dashboard.")
     public void step01() {
-        preTest();
         preConditionLogin();
         Hook.driver = this;
     }
 
     @When("user menekan tab lembur.")
     public void step02() {
-        zoomOut();
         dashboardPage().clickLemburButton();
     }
 
