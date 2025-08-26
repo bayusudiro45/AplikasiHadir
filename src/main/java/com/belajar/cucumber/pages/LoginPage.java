@@ -12,57 +12,74 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
-    private WebDriver driver;
-    @FindBy(id = "email")
-    private WebElement email;
+  private WebDriver driver;
+  @FindBy(id = "email")
+  private WebElement emailLogin;
 
-    @FindBy(id = "password")
-    private WebElement password;
+  @FindBy(id = "password")
+  private WebElement passwordLogin;
 
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement masukButton;
+  @FindBy(xpath = "//button[@type='submit']")
+  private WebElement masukButton;
 
-    @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
-    public WebElement errorMessage;
+  @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
+  public WebElement errorMessage;
 
-    public LoginPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+  @FindBy(xpath = "//button[normalize-space()='Lupa password ?']")
+  public WebElement lupaPasswordButton;
 
-    public void setEmail(String value) {
-        email.sendKeys(value);
-    }
+  @FindBy(xpath = "//button[normalize-space()='disini']")
+    private WebElement registerPageButton;
 
-    public void setPassword(String value) {
-        password.sendKeys(value);
-    }
+  public LoginPage(WebDriver driver) {
+    this.driver = driver;
+    PageFactory.initElements(this.driver, this);
+  }
 
-    public void clickMasukButton() {
-      masukButton.click();
-    }
+  public void setEmailLogin(String value) {
+    emailLogin.sendKeys(value);
+  }
+
+  public void setPasswordLogin(String value) {
+    passwordLogin.sendKeys(value);
+  }
+
+  public void clickMasukButton() {
+    masukButton.click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/apps/absent"));
+  }
+
     public String getErrorMessage() {
     try {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")
-        ));
-        return errorMessage.getText();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+      wait.until(ExpectedConditions.visibilityOfElementLocated(
+          By.xpath("//p[@class='MuiTypography-root MuiTypography-body1 css-1qamc72']")));
+      return errorMessage.getText();
     } catch (NoSuchElementException e) {
       return null;
     }
   }
-    public void performLogin() {
-    setEmail("hadirsqa1@gmail.com");
-    setPassword("SQA@Hadir12345");
+
+  public void performLogin() {
+    setEmailLogin("hadirsqa1@gmail.com");
+    setPasswordLogin("SQA@Hadir12345");
     clickMasukButton();
-    }
+  }
 
   public void performLogin(String username, String password) {
-    setEmail(username);
-    setPassword(password);
+    setEmailLogin(username);
+    setPasswordLogin(password);
     clickMasukButton();
-    }
+  }
 
+  public void clickRegisterPageButton() {
+    registerPageButton.click();
+  }
 
+  public void clickLupaPasswordButton(){
+    lupaPasswordButton.click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/absen/reset-password-request"));       
+  }
 }

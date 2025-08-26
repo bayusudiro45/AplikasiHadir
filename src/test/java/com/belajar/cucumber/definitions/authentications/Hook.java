@@ -13,6 +13,9 @@ public class Hook {
   public void tearDown(Scenario scenario){
     final byte[] screenshot = ((TakesScreenshot) driver.getDriver()).getScreenshotAs(OutputType.BYTES);
     scenario.attach(screenshot, "image/png", scenario.getName());  
-    driver.close();
+    if (driver != null) {
+        driver.close();
+        driver = null; // Optional: clear the reference
+    }
   } 
 }

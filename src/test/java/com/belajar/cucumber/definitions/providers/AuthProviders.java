@@ -5,45 +5,84 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.belajar.cucumber.pages.DashboardPage;
+import com.belajar.cucumber.pages.KoreksiAbsenPage;
 import com.belajar.cucumber.pages.LoginPage;
+import com.belajar.cucumber.pages.LupaPasswordPage;
+import com.belajar.cucumber.pages.RegisterPage;
+import com.belajar.cucumber.utils.DragnDrop;
 import com.belajar.cucumber.utils.DriverManager;
 
 public class AuthProviders {
   private DriverManager driverManager;
-  private WebDriver driver;
+  protected WebDriver driver;
   private LoginPage loginPage;
   private DashboardPage dashboardPage;
+  private RegisterPage registerPage;
+  private LupaPasswordPage lupaPasswordPage;
+  private KoreksiAbsenPage koreksiAbsenPage;
+  private DragnDrop dragnDrop;
+
+  //inisiasi page
+  public LoginPage loginPage() {
+    loginPage = new LoginPage(driver);
+    return loginPage;
+  }
+
+  public DashboardPage dashboardPage(){
+    dashboardPage = new DashboardPage(driver);
+    return dashboardPage;
+  }
+
+  public LupaPasswordPage lupaPasswordPage(){
+    lupaPasswordPage = new LupaPasswordPage(driver);
+    return lupaPasswordPage;
+  }
+
+  public KoreksiAbsenPage koreksiAbsenPage(){
+    koreksiAbsenPage = new KoreksiAbsenPage(driver);
+    return koreksiAbsenPage;
+  }
+  public DragnDrop dragnDrop(){
+    dragnDrop = new DragnDrop(driver);
+    return dragnDrop;
+  }
+
 
   public void preTest() {
     driverManager = new DriverManager();
     driver = driverManager.getDriver();
-    loginPage = new LoginPage(driver);
     driver.get("https://magang.dikahadir.com/absen/login");
   }
 
-  public void preConRegister(){
-    dashboardPage = new DashboardPage(driver);
-    dashboardPage.clickRegisterPageButton();
+  public void preConditionLogin() {
+    preTest();
+    loginPage = new LoginPage(driver);
+    loginPage.performLogin();
+    zoomOut();
   }
 
-  public void preConditionLogin() {
-    loginPage.performLogin();
+  public void preConAjukanKoreksi(){
+    preConditionLogin();
+    dashboardPage().clikKoreksiIcon();
+  }
+
+  public RegisterPage registerPage(){
+    registerPage = new RegisterPage(driver);
+    return registerPage;
+  }
+  public void preConRegister(){
+    preTest();
+    loginPage().clickRegisterPageButton();
   }
 
   public WebDriver getDriver() {
     return driverManager.getDriver();
   }
 
-  public LoginPage loginPage() {
-    return loginPage;
-  }
-
-  public DashboardPage dashboardPage(){
-    return dashboardPage;
-  }
 
   public void close() {
     driverManager.quitDriver();
@@ -72,7 +111,7 @@ public class AuthProviders {
     }
 
     public String getRandomValidNIK(String NIK) {
-      if ("${random_NIK}".equals(NIK)) {
+      if ("${random_valid_NIK}".equals(NIK)) {
         return getRandomValidNIK();
       }
       return NIK;
@@ -95,5 +134,9 @@ public class AuthProviders {
     public String getPhotoPath(String fileName) {
       File file = new File("src/test/resources/" + fileName);
       return file.getAbsolutePath();
+    }
+    public void zoomOut(){
+      ((JavascriptExecutor) driver).executeScript("document.body.style.zoom='70%'");
+      try { Thread.sleep(1000); } catch (InterruptedException e) {}
     }
     }

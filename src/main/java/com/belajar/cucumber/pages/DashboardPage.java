@@ -1,7 +1,6 @@
 package com.belajar.cucumber.pages;
 
 import java.time.Duration;
-import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,73 +13,58 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class DashboardPage {
   private WebDriver driver;
 
-  @FindBy(id = "nik")
-  private WebElement NIK;
+  @FindBy(xpath = "//img[@alt='Lembur']")
+  private WebElement lemburButton;
 
-  @FindBy(xpath = "//button[normalize-space()='disini']")
-  private WebElement registerPageButton;
+  @FindBy(xpath = "//p[@class='MuiTypography-root MuiTypography-body1 css-1lkqrnd'][normalize-space()='Cuti']")
+  private WebElement cutiButton;
 
-  @FindBy(id = "fullname")
-  private WebElement fullname;
+  @FindBy(xpath = "//p[normalize-space()='Absensi']")
+  private WebElement absenButton;
 
-  @FindBy(id = "email")
-  private WebElement email;
+  @FindBy(xpath = "//img[@alt='menu']")
+  private WebElement burgerButton;
 
-  @FindBy(id = "password")
-  private WebElement password;
+  @FindBy(xpath = "//button[normalize-space()='Logout']")
+  private WebElement logoutButton;
 
-  @FindBy(id = "selfie")
-  private WebElement uploadSelfie;
-
-  @FindBy(id = "submit")
-  private WebElement daftarButton;
-
-  @FindBy(css = ".MuiTypography-root.MuiTypography-body1.css-1qamc72")
-  private WebElement registMessage;
+  @FindBy(xpath = "//img[@alt='Koreksi Absen']")
+  private WebElement koreksiIcon;
 
   public DashboardPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
   }
-  public void setNIK(String value){
-    NIK.sendKeys(value);
-  }
-
-  public void clickRegisterPageButton(){
-    registerPageButton.click();
-  }
-
+  
   public String getCurrentURL() {
     return driver.getCurrentUrl();
   }
-  public void setFullname(String value){
-    fullname.sendKeys(value);
-  }
 
-  public void setEmail(String value) {
-    email.sendKeys(value);
-  }
-  
-  public void setPassword(String value) {
-    password.sendKeys(value);
-  }
-  public void setUploadSelfie(String value) {
-    uploadSelfie.sendKeys(value);
-  }
-
-  public void clickDaftarButton(){
-    daftarButton.click();
-  }
-
-  public String getregistMessage() {
-    try {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.cssSelector(".MuiTypography-root.MuiTypography-body1.css-1qamc72")
-        ));
-        return registMessage.getText();
-    } catch (NoSuchElementException e) {
-      return null;
+  public void clickLemburButton() {
+        lemburButton.click();
     }
-  }
+
+    public void clickCutiButton() {
+        cutiButton.click();
+    }
+
+    public void clickAbsenButton(){
+        absenButton.click();
+    }
+
+    public void clickBurgerButton(){
+      burgerButton.click();
+    }
+
+    public void clickLogoutButton(){
+      logoutButton.click();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+      wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/absen/login"));    
+    }
+
+    public void clikKoreksiIcon(){
+      koreksiIcon.click();
+      WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+      wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/apps/absent/correction"));    
+    }
 }
