@@ -8,7 +8,13 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+/**
+ * LLorem ipsumm
+ */
 public class EmptyDataRegisterSteps extends AuthProviders{
+    /**
+     * 
+     */
     private String emptyField;
 
     @Given("user berada pada halaman register untuk menguji empty data.")
