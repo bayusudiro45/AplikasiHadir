@@ -11,7 +11,6 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class NegativeAjukanKoreksiSteps extends AuthProviders{
-    private Integer totalAwal;
 
     @Given("user sudah berada pada halaman koreksi absen untuk ajukan koreksi.")
     public void step01() {
@@ -21,7 +20,6 @@ public class NegativeAjukanKoreksiSteps extends AuthProviders{
 
     @When("user klik tombol ajukan koreksi.")
     public void step02(){
-        totalAwal = koreksiAbsenPage().getTotal();
         driver.navigate().refresh();
         koreksiAbsenPage().clickAjukanKoreksiButton();
     }

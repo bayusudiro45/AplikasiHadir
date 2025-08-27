@@ -32,6 +32,9 @@ public class KoreksiAbsenPage {
     @FindBy(xpath = "(//p[@class='MuiTypography-root MuiTypography-body1 css-1bwr8un'])[1]")
     private WebElement pesanError;
 
+    @FindBy(xpath = "//button[normalize-space()='Reset']")
+    private WebElement resetButton;
+
     public KoreksiAbsenPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -76,5 +79,9 @@ public class KoreksiAbsenPage {
     
     public String getPesanError(){
         return pesanError.getText();
+    }
+
+    public void clickResetButton(){
+        resetButton.click();
     }
 }

@@ -29,9 +29,10 @@ public class DashboardPage {
   @FindBy(xpath = "//img[@alt='Koreksi Absen']")
   private WebElement koreksiIcon;
 
+
   public DashboardPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    this.driver = driver;
+    PageFactory.initElements(driver, this);
   }
   
   public String getCurrentURL() {
