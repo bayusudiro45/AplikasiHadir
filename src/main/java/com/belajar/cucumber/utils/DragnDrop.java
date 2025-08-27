@@ -63,9 +63,7 @@ public class DragnDrop {
         dateButton.click();
 
         builder.dragAndDrop(getJam(1), getJam(hour+1)).perform();
-        // int targetDegree = minute * 6;
-        // builder.dragAndDrop(getMenit(0), getMenit(targetDegree)).perform();
-        clickMinute(driver, 4);
+        clickMinute(driver, minute);
     }
 
 }

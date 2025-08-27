@@ -31,6 +31,7 @@ public class LoginPage {
   @FindBy(xpath = "//button[normalize-space()='disini']")
     private WebElement registerPageButton;
 
+
   public LoginPage(WebDriver driver) {
     this.driver = driver;
     PageFactory.initElements(this.driver, this);
@@ -44,13 +45,7 @@ public class LoginPage {
     passwordLogin.sendKeys(value);
   }
 
-  public void clickMasukButton() {
-    masukButton.click();
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-    wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/apps/absent"));
-  }
-
-    public String getErrorMessage() {
+  public String getErrorMessage() {
     try {
       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
       wait.until(ExpectedConditions.visibilityOfElementLocated(
@@ -61,6 +56,7 @@ public class LoginPage {
     }
   }
 
+  
   public void performLogin() {
     setEmailLogin("hadirsqa1@gmail.com");
     setPasswordLogin("SQA@Hadir12345");
@@ -71,6 +67,13 @@ public class LoginPage {
     setEmailLogin(username);
     setPasswordLogin(password);
     clickMasukButton();
+  }
+
+
+  public void clickMasukButton() {
+    masukButton.click();
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    wait.until(ExpectedConditions.urlContains("https://magang.dikahadir.com/apps/absent"));
   }
 
   public void clickRegisterPageButton() {

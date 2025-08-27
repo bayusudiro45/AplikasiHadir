@@ -1,8 +1,6 @@
 package com.belajar.cucumber.pages;
 
 import java.time.Duration;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -31,9 +29,10 @@ public class DashboardPage {
   @FindBy(xpath = "//img[@alt='Koreksi Absen']")
   private WebElement koreksiIcon;
 
+
   public DashboardPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
+    this.driver = driver;
+    PageFactory.initElements(driver, this);
   }
   
   public String getCurrentURL() {
