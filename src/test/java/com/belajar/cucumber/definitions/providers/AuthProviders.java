@@ -8,8 +8,10 @@ import java.util.Random;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
+import com.belajar.cucumber.pages.CutiPage;
 import com.belajar.cucumber.pages.DashboardPage;
 import com.belajar.cucumber.pages.KoreksiAbsenPage;
+import com.belajar.cucumber.pages.LemburPage;
 import com.belajar.cucumber.pages.LoginPage;
 import com.belajar.cucumber.pages.LupaPasswordPage;
 import com.belajar.cucumber.pages.RegisterPage;
@@ -25,6 +27,8 @@ public class AuthProviders {
   private LupaPasswordPage lupaPasswordPage;
   private KoreksiAbsenPage koreksiAbsenPage;
   private DragnDrop dragnDrop;
+  private CutiPage cutiPage;
+  private LemburPage lemburPage;
 
   //inisiasi page
   public LoginPage loginPage() {
@@ -51,6 +55,15 @@ public class AuthProviders {
     return dragnDrop;
   }
 
+  public CutiPage cutiPage(){
+    cutiPage = new CutiPage(driver);
+    return cutiPage;
+  }
+
+  public LemburPage lemburPage(){
+    lemburPage = new LemburPage(driver);
+    return lemburPage;
+  }
 
   public void preTest() {
     driverManager = new DriverManager();
